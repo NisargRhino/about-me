@@ -10,14 +10,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9; /* Light background for clean look */
+            background-color: #f9f9f9; /* Clean light background */
             color: #333; /* Dark text for readability */
-            scroll-behavior: smooth; /* Enables smooth scrolling */
+            scroll-behavior: smooth;
         }
 
         /* Navigation Bar */
         .navbar {
-            background-color: #1e1e1e; /* Dark sleek background */
+            background-color: #1e1e1e; /* Sleek dark navbar */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,6 +39,37 @@
 
         .navbar a:hover {
             color: #1e90ff;
+        }
+
+        .navbar .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .navbar .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .navbar .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: smaller;
+            font-family: 'Caliri';
+        }
+
+        .navbar .dropdown-content a:hover {
+            background-color: #1e90ff;
+        }
+
+        .navbar .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         /* Hero Section */
@@ -73,66 +104,71 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .hero a:hover {
             background-color: #0066cc;
+            transform: scale(1.1);
         }
 
-        /* Keyframes for animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Carousel Styling */
+        .carousel-container {
+            max-width: 80%;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .carousel-inner {
+            display: flex;
+            align-items: center; /* Centers the items vertically */
+            justify-content: left; /* Centers the items horizontally */
+            width: 400px; /* Fixed width for the carousel */
+            height: 600px; /* Fixed height for the carousel */
+            overflow: hidden; /* Ensures no overflow outside the container */
         }
 
-        /* Section Styling */
+        .carousel-inner img {
+            width: 100%; /* Ensures image width fits the container */
+            height: 600px; /* Fixed height for all images */
+
+            /*object-fit: contain;  Maintains aspect ratio while covering the container */
+            /*object-position: center;  Centers the image content */
+        }
+
+
+        .carousel-indicators li {
+            background-color: #333;
+        }
+
+        
+        /* Projects Section */
         .section {
             padding: 100px 20px;
             text-align: center;
-            position: relative;
-            color: #333;
         }
 
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .section p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .image-gallery img {
+            width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: brightness(50%);
         }
 
-        /* Animation on Scroll */
-        .animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-
-        .animate.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            filter: brightness(100%);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
@@ -146,7 +182,6 @@
         footer a {
             color: #1e90ff;
             text-decoration: none;
-            margin: 0 10px;
         }
 
         footer a:hover {
@@ -162,49 +197,89 @@
         </div>
         <div class="navbar-links">
             <a href="#hero">Home</a>
-            <a href="#projects">Projects</a>
+            <div class="dropdown">
+                <a href="#projects">Projects</a>
+                <div class="dropdown-content">
+                    <a href="https://nisargrhino.github.io/claussis_mossoti_factor/">Claussius Mossoti Factor Calculator</a>
+                    <a href="https://nisargrhino.github.io/SmileBERTa-portal/">SmileBERTa</a>
+                    <a href="https://nisargrhino.github.io/frag_predict_portal2/">Drug Fragment Predictor</a>
+                </div>
+            </div>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <div class="hero" id="hero">
-        <h1>Hello, I'm [Your Name]</h1>
-        <p>I am a passionate [Your Profession/Field]. Let's build the future together.</p>
+        <h1>Hello, I'm Nisarg Shah</h1>
+        <p>Here is a little about me.</p>
+
+        <!-- Photo Carousel -->
+        <div id="photoCarousel" class="carousel slide carousel-container" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#photoCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#photoCarousel" data-slide-to="1"></li>
+                <li data-target="#photoCarousel" data-slide-to="2"></li>
+                <li data-target="#photoCarousel" data-slide-to="3"></li>
+                <li data-target="#photoCarousel" data-slide-to="4"></li>
+            </ol>
+
+            <!-- Carousel Items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./meMIT.jpg" alt="Photo 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="./ncur.jpg" alt="Photo 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="./gatilab.jpg" alt="Photo 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="./guitar.jpg" alt="Photo 4">
+                </div>
+                <div class="carousel-item">
+                    <img src="./mitposter.jpg" alt="Photo 5">
+                </div>
+
+            </div>
+
+           
+        </div>
         <a href="#projects">Explore My Work</a>
     </div>
 
-    <!-- Section: Projects -->
+    <!-- Projects Section -->
     <div class="section" id="projects">
         <h2>My Projects</h2>
-        <p>Explore the innovative projects I've worked on and discover my expertise in [Your Field/Skills].</p>
-        <!-- Add project cards or images here -->
+        <div class="image-gallery">
+            <a href="https://nisargrhino.github.io/claussis_mossoti_factor/">
+                <img src="./cmf.jpg" alt="Project 1">
+            </a>
+            <a href="https://nisargrhino.github.io/SmileBERTa-portal/">
+                <img src="./SmileBERTa.webp" alt="Project 2">
+            </a>
+            <a href="https://nisargrhino.github.io/frag_predict_portal2/">
+                <img src="./frag-pred.jpg" alt="Project 3">
+            </a>
+        </div>
     </div>
 
-    <!-- Section: Contact -->
+    <!-- Contact Section -->
     <div class="section" id="contact">
         <h2>Contact Me</h2>
-        <p>Have a question or want to collaborate? Reach out to me!</p>
-        <p>Email: yourname@example.com</p>
+        <p>Email: nisargs2018@gmail.com</p>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© [Your Name] 2024. Built with ❤️.</p>
+        <p>© Nisarg Shah 2024. Built with ❤️.</p>
         <a href="#hero">Back to Top</a>
     </footer>
 
-    <!-- JavaScript for animations -->
-    <script>
-        document.addEventListener('scroll', () => {
-            const elements = document.querySelectorAll('.animate');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
-                    el.classList.add('visible');
-                }
-            });
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
